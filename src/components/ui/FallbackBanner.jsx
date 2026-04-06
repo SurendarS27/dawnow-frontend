@@ -8,7 +8,8 @@ const FallbackBanner = () => {
 
     const checkApiStatus = async () => {
         try {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+            const rawUrl = import.meta.env.VITE_API_URL;
+            const API_URL = rawUrl ? (rawUrl.endsWith('/api') ? rawUrl : `${rawUrl}/api`) : 'http://localhost:5000/api';
             await axios.get(`${API_URL}/health`, { timeout: 20000 });
             setIsApiDown(false);
         } catch (error) {
