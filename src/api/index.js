@@ -203,3 +203,10 @@ export const authAPI = {
     forgotPassword: (email) => API.post('/auth/forgot-password', email),
     resetPassword: (token, data) => API.post(`/auth/reset-password/${token}`, data)
 }
+
+// ============ SETTINGS API ============
+export const settingsAPI = {
+    getSetting: (key) => API.get(`/settings/${key}`),
+    setSetting: (key, value, description) => API.post('/settings', { key, value, description }),
+    getAll: () => API.get('/settings')
+}
