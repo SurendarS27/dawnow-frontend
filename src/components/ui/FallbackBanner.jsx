@@ -9,9 +9,10 @@ const FallbackBanner = () => {
     const checkApiStatus = async () => {
         try {
             const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-            await axios.get(`${API_URL}/health`, { timeout: 3000 });
+            await axios.get(`${API_URL}/health`, { timeout: 15000 });
             setIsApiDown(false);
         } catch (error) {
+            console.error("Health check failed:", error);
             setIsApiDown(true);
         }
     };
